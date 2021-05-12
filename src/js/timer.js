@@ -26,14 +26,21 @@ class CountdownTimer {
         const min = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
         const sec = Math.floor((time % (1000 * 60)) / 1000);
 
-        this.refs.secs.textContent = sec;
-        this.refs.mins.textContent = min;
-        this.refs.hours.textContent = hour;
-        this.refs.days.textContent = day;
+        this.updateTimer(this.refs.secs, sec);
+        this.updateTimer(this.refs.mins, min);
+        this.updateTimer(this.refs.hours, hour);
+        this.updateTimer(this.refs.days, day);
       } else {
         this.refs.timerOver.textContent = `Timer is over`;
       }
     }, 1000);
+  }
+  updateTimer(nums, num) {
+    if (num <= 9) {
+      nums.textContent = '0' + num;
+    } else {
+      nums.textContent = num;
+    }
   }
 }
 
